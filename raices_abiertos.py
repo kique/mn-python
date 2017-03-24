@@ -1,20 +1,28 @@
-def f(x):
-    return 3*x**2 - 2*x - 100
+# -*- coding: utf-8 -*-
+"""
+Editor de Spyder
 
-def biseccion(xi, xf, es, imax):
+Este archivo temporal se encuentra aquí:
+/home/ahpukh/.spyder2/.temp.py
+"""
+
+def f(ecu,x):
+    return eval(ecu)
+
+def biseccion(xi, xf, es, imax,ecu):
     xr = xi
-    iter = 0
+    i = 0
     ea = 100
-    while ea >= es and iter <= imax:
+    while ea >= es and i <= imax:
         xrold = xr
         xr = (xi + xf) / 2.0
         #print xr
-        iter = iter + 1
+        i = i + 1
 
         if xr != 0:
             ea = abs(((xr - xrold)/xr)*100)
 
-        test = f(xi) * f(xr)
+        test = f(ecu,xi) * f(ecu,xr)
 
         if test < 0:
             xf = xr
@@ -24,9 +32,12 @@ def biseccion(xi, xf, es, imax):
 
         else:
             ea = 0
+        print '{:3d} {:12.6} {:12.6} {:12.6} {:12.6}'.format(i,xi,xf,xr,ea)
 
     return xr
 
+print "Introduzca la ecuación: "
+ecu = str(raw_input())
 print "Dar el valor de xi: "
 xi = float(raw_input())
 print "Dar el valor de xf: "
@@ -36,7 +47,6 @@ es = float(raw_input())
 print "Dar el valor de maxit: "
 imax =  input()
 
-print "La raiz es: ", biseccion(xi, xf, es, imax)
+raiz = biseccion(xi, xf, es, imax,ecu)
 
-
-
+print "La raiz es: ", raiz
